@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas com Degradê</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 25px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            min-height: 90vh;
+        }
+
+        input[type="text"] {
+            font-size: 16px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 6px 10px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #ffffff;
+            color: #2575fc;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 8px 0;
+            font-size: 18px;
+        }
+
+        .concluida {
+            text-decoration: line-through;
+            color: red;
+        }
+
+        h2 {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Lista de Tarefas</h2>
+    <input type="text" id="tarefaInput" placeholder="Digite uma tarefa:">
+    <button onclick="adicionarTarefa()">Adicionar</button>
+
+    <ul id="listaTarefas"></ul>
+
+    <script>
+        function adicionarTarefa() {
+            const input = document.getElementById("tarefaInput");
+            const texto = input.value.trim();
+
+            if (texto === "") return;
+
+            const li = document.createElement("li");
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            const span = document.createElement("span");
+            span.textContent = " " + texto;
+
+            checkbox.addEventListener("change", function () {
+                if (this.checked) {
+                    span.classList.add("concluida");
+                } else {
+                    span.classList.remove("concluida");
+                }
+            });
+
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            document.getElementById("listaTarefas").appendChild(li);
+
+            input.value = "";
+            input.focus();
+        }
+    </script>
+
+</body>
+
+</html>

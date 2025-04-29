@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Escolha Seu Personagem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: linear-gradient(to right, #11cbb8, #25d8fc);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    h2 {
+      color: white;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .personagens {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    label {
+      margin: 0 15px;
+    }
+
+    input[type="radio"] {
+      transform: scale(1.2);
+      margin-right: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #ffffff;
+      color: #2575fc;
+      font-weight: bold;
+    }
+
+    #resultado {
+      margin-top: 30px;
+    }
+
+    #resultado img {
+      width: 200px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    .mensagem {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Escolha Seu Personagem</h2>
+
+  <div class="personagens">
+    <label><input type="radio" name="personagem" value="mago"> Mago</label>
+    <label><input type="radio" name="personagem" value="guerreiro"> Guerreiro</label>
+    <label><input type="radio" name="personagem" value="arqueiro"> Arqueiro</label>
+  </div>
+
+  <button onclick="confirmarEscolha()">Confirmar Escolha</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    function confirmarEscolha() {
+      const selecionado = document.querySelector('input[name="personagem"]:checked');
+      const resultado = document.getElementById("resultado");
+
+      if (!selecionado) {
+        resultado.innerHTML = "<p style='color: yellow;'>Escolha um personagem primeiro!</p>";
+        return;
+      }
+
+      let mensagem = "";
+      let imagem = "";
+
+      switch (selecionado.value) {
+        case "mago":
+          mensagem = "Você escolheu ser o <strong>Mago</strong>! Prepare-se para feitiçaria mortal!";
+          imagem = "mago.png";
+          break;
+        case "guerreiro":
+          mensagem = "Você escolheu ser o <strong>Guerreiro</strong>! Prepare-se para batalhas mortais!";
+          imagem = "guerreiro.png";
+          break;
+        case "arqueiro":
+          mensagem = "Você escolheu ser o <strong>Arqueiro</strong>! Prepare-se para acertar alvos mortais!";
+          imagem = "arqueiro.png";
+          break;
+      }
+
+      resultado.innerHTML = `<p class="mensagem">${mensagem}</p><img src="${imagem}" alt="${selecionado.value}">`;
+    }
+  </script>
+
+</body>
+</html>
